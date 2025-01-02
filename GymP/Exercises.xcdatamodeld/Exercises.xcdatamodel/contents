@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Equipment" representedClassName="Equipment" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="equipment" inverseEntity="Exercise"/>
+    </entity>
+    <entity name="Exercise" representedClassName="Exercise" syncable="YES">
+        <attribute name="descrip" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Equipment" inverseName="exercise" inverseEntity="Equipment"/>
+        <relationship name="log" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Log" inverseName="exercise" inverseEntity="Log"/>
+        <relationship name="muscle" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Muscle" inverseName="exercise" inverseEntity="Muscle"/>
+        <relationship name="trainingEtemplate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrainingExerciseTemplate" inverseName="exercise" inverseEntity="TrainingExerciseTemplate"/>
+        <relationship name="trainings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Training" inverseName="exerciseT" inverseEntity="Training"/>
+    </entity>
+    <entity name="ExerciseForTraining" representedClassName="ExerciseForTraining" syncable="YES">
+        <attribute name="doIndex" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="reps" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="String"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise"/>
+    </entity>
+    <entity name="Log" representedClassName="Log" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="reps" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="log" inverseEntity="Exercise"/>
+        <relationship name="training" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Training" inverseName="log" inverseEntity="Training"/>
+        <relationship name="trainingInstance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrainingInstance" inverseName="log" inverseEntity="TrainingInstance"/>
+        <relationship name="trainingTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrainingExerciseTemplate" inverseName="log" inverseEntity="TrainingExerciseTemplate"/>
+    </entity>
+    <entity name="Muscle" representedClassName="Muscle" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="intensity" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="muscle" inverseEntity="Exercise"/>
+    </entity>
+    <entity name="Training" representedClassName="Training" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <relationship name="exerciseT" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="trainings" inverseEntity="Exercise"/>
+        <relationship name="log" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Log" inverseName="training" inverseEntity="Log"/>
+        <relationship name="trainingInstance" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrainingInstance" inverseName="training" inverseEntity="TrainingInstance"/>
+        <relationship name="trainingRoutine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrainingRoutine" inverseName="training" inverseEntity="TrainingRoutine"/>
+        <relationship name="trainingTexercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrainingExerciseTemplate" inverseName="training" inverseEntity="TrainingExerciseTemplate"/>
+    </entity>
+    <entity name="TrainingExerciseTemplate" representedClassName="TrainingExerciseTemplate" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isExtraSet" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isLogged" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isWarmup" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="reps" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temporarLogID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="trainingEtemplate" inverseEntity="Exercise"/>
+        <relationship name="log" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Log" inverseName="trainingTemplate" inverseEntity="Log"/>
+        <relationship name="training" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Training" inverseName="trainingTexercise" inverseEntity="Training"/>
+    </entity>
+    <entity name="TrainingInstance" representedClassName="TrainingInstance" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="trainingend" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="trainingstart" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="log" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Log" inverseName="trainingInstance" inverseEntity="Log"/>
+        <relationship name="training" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Training" inverseName="trainingInstance" inverseEntity="Training"/>
+    </entity>
+    <entity name="TrainingRoutine" representedClassName="TrainingRoutine" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="training" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Training" inverseName="trainingRoutine" inverseEntity="Training"/>
+    </entity>
+</model>
