@@ -2,7 +2,7 @@
 //  Training+CoreDataProperties.swift
 //  GymP
 //
-//  Created by Elias Osarumwense on 31.08.24.
+//  Created by Elias Osarumwense on 07.02.25.
 //
 //
 
@@ -22,8 +22,9 @@ extension Training {
     @NSManaged public var exerciseT: NSSet?
     @NSManaged public var log: NSSet?
     @NSManaged public var trainingInstance: NSSet?
-    @NSManaged public var trainingTexercise: NSSet?
     @NSManaged public var trainingRoutine: TrainingRoutine?
+    @NSManaged public var trainingTexercise: NSSet?
+    @NSManaged public var routineSchedule: NSSet?
 
 }
 
@@ -92,6 +93,23 @@ extension Training {
 
     @objc(removeTrainingTexercise:)
     @NSManaged public func removeFromTrainingTexercise(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for routineSchedule
+extension Training {
+
+    @objc(addRoutineScheduleObject:)
+    @NSManaged public func addToRoutineSchedule(_ value: TrainingSchedule)
+
+    @objc(removeRoutineScheduleObject:)
+    @NSManaged public func removeFromRoutineSchedule(_ value: TrainingSchedule)
+
+    @objc(addRoutineSchedule:)
+    @NSManaged public func addToRoutineSchedule(_ values: NSSet)
+
+    @objc(removeRoutineSchedule:)
+    @NSManaged public func removeFromRoutineSchedule(_ values: NSSet)
 
 }
 

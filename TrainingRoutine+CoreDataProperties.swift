@@ -2,7 +2,7 @@
 //  TrainingRoutine+CoreDataProperties.swift
 //  GymP
 //
-//  Created by Elias Osarumwense on 31.08.24.
+//  Created by Elias Osarumwense on 07.02.25.
 //
 //
 
@@ -16,9 +16,12 @@ extension TrainingRoutine {
         return NSFetchRequest<TrainingRoutine>(entityName: "TrainingRoutine")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var name: String?
     @NSManaged public var notes: String?
+    @NSManaged public var scheduleType: Int16
+    @NSManaged public var numberOfCustomDays: Int16
+    @NSManaged public var scheduleStartingDay: Date?
     @NSManaged public var training: NSSet?
 
 }
